@@ -25,5 +25,7 @@ cp ./ssh/after_established.sh "$SSH_DIR/"
 # Make bash scripts executable
 echo "Set +x permission to scripts"
 chmod +x "$LOCAL_BIN_DIR/ossh"
+chmod +x "$SSH_DIR/before_established.sh"
+chmod +x "$SSH_DIR/after_established.sh" 
 
 echo "Installation complete."
