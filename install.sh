@@ -2,7 +2,8 @@
 
 # Paths
 LOCAL_BIN_DIR="/usr/local/bin"
-SSH_DIR="~/.ssh"
+SSH_DIR="/home/$SUDO_USER/.ssh"
+
 
 # Ensure the script is run with sudo or root privileges
 if [ "$EUID" -ne 0 ]; then
@@ -17,7 +18,7 @@ if [ ! -d "$SSH_DIR" ]; then
 fi
 
 # Copy bash script files
-echo "Copying bin bash scripts..."
+echo "Copying bash scripts..."
 cp ./bin/ossh.sh "$LOCAL_BIN_DIR/ossh"
 cp ./ssh/before_established.sh "$SSH_DIR/"
 cp ./ssh/after_established.sh "$SSH_DIR/"
@@ -27,5 +28,7 @@ echo "Set +x permission to scripts"
 chmod +x "$LOCAL_BIN_DIR/ossh"
 chmod +x "$SSH_DIR/before_established.sh"
 chmod +x "$SSH_DIR/after_established.sh" 
+chown $USER:$USER "$SSH_DIR/before_established.sh"
+chown $USER:$USER "$SSH_DIR/after_established.sh" 
 
 echo "Installation complete."
