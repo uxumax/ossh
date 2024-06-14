@@ -16,8 +16,28 @@ get_ssh_option() {
   ' ~/.ssh/config
 }
 
-# Make function accessable to ossh scripts
+is_ainb() {
+  a=$1
+  b=($2)
+  for b_item in "${b[@]}"; do
+    if [[ "$a" == "$b_item" ]]; then
+      echo 1
+      return
+    fi
+  done
+  echo 0
+}
+
+is_hostname() {
+  hostnames=$1
+  echo $(is_ainb "$Hostname" "$hostnames")
+  return
+}
+
+# Make functions accessable to ossh scripts
 export -f get_ssh_option
+export -f is_ainb
+export -f is_hostname
 
 Hostname=$1
 shift

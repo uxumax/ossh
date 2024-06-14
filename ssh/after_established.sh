@@ -11,13 +11,13 @@ IdentityFile=$(get_ssh_option "$Hostname" "IdentityFile")
 
 echo "Do some staff after ssh connection established..."
 
-# Your code here
-# You can use all ./ssh/config variables of Hostname here
+# Your code here (e.g., open a port on another server)
 #
-# For example close port on another server if you use ssh backtunnels for connect to your VMs and don't want keep ports open all the time
-# Just call here your command that close port on server that you use for backtunnels:
-#
-# path/to/close_port_on_tunnel_vps.sh $Port
-#
+# You can specify code for some $Hostname using built-in bash function is_hostname(). Ex:
+# if [ $(is_hostname "hostname1 hostname2") ]; then
+#   echo "Have to close port on public_vps" after ssh connection established
+#   ssh public_vps "echo $Port > /tmp/ports_to_close.list"
+#   sleep 1.1
+# fi
 
 echo "Done!"

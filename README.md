@@ -101,6 +101,27 @@ echo "Do some stuff after ssh connection established..."
 echo "Done!"
 ```
 
+### Built-in functions
+
+You can specify code for some hostnames using built-in bash function is_hostname(). Example with `~/.ssh/before_established.sh`:
+
+```bash
+#!/bin/bash
+
+# Set ssh connection hostname
+Hostname=$1
+
+echo "Do some staff before ssh connection established..."
+
+if [ $(is_hostname "hostname1 hostname2") ]; then
+    echo "Have to open port on public_vps" before ssh connection established
+    ssh public_vps "echo $Port > /tmp/ports_to_open.list"
+    sleep 1.1
+fi
+
+echo "Done!"
+```
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit a pull request or open an issue if you have any suggestions or bug reports.
