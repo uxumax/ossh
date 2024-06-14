@@ -114,7 +114,7 @@ Port=$(get_ssh_option "$Hostname" "Port")
 
 echo "Do some staff before ssh connection established..."
 
-if [ $(is_hostname "hostname1 hostname2") ]; then
+if [ $(is_hostname "hostname1 hostname2") == 1 ]; then
     echo "Have to open port on public_vps" before ssh connection established
     ssh public_vps "echo $Port > /tmp/ports_to_open.list"
     sleep 1.1

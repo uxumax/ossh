@@ -14,7 +14,7 @@ echo "Do some staff after ssh connection established..."
 # Your code here (e.g., open a port on another server)
 #
 # You can specify code for some $Hostname using built-in bash function is_hostname(). Ex:
-# if [ $(is_hostname "hostname1 hostname2") ]; then
+# if [ $(is_hostname "hostname1 hostname2") == 1 ]; then
 #   echo "Have to close port on public_vps" after ssh connection established
 #   ssh public_vps "echo $Port > /tmp/ports_to_close.list"
 #   sleep 1.1
