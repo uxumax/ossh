@@ -110,6 +110,7 @@ You can specify code for some hostnames using built-in bash function is_hostname
 
 # Set ssh connection hostname
 Hostname=$1
+Port=$(get_ssh_option "$Hostname" "Port")
 
 echo "Do some staff before ssh connection established..."
 
