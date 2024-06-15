@@ -22,7 +22,7 @@ sudo ./install.sh
 
 This script will:
 1. Copy the wrapper script to `/usr/local/bin` as `ossh`.
-2. Copy the pre and post connection scripts to the `~/.ssh` directory.
+2. Copy the pre and post connection scripts to the `~/.ssh/scripts` directory.
 3. Set the necessary execution permissions for the scripts.
 
 ## Usage
@@ -59,7 +59,7 @@ Host myserver
 
 ### Pre Connection Script
 
-The pre-connection script is located at `~/.ssh/before_established.sh`. This script will run before establishing the SSH connection.
+The pre-connection script is located at `~/.ssh/scripts/before_established.sh`. This script will run before establishing the SSH connection.
 
 ```bash
 #!/bin/bash
@@ -81,7 +81,7 @@ echo "Done!"
 
 ### Post Connection Script
 
-The post-connection script is located at `~/.ssh/after_established.sh`. This script will run after the SSH connection has been established.
+The post-connection script is located at `~/.ssh/scripts/after_established.sh`. This script will run after the SSH connection has been established.
 
 ```bash
 #!/bin/bash
@@ -103,7 +103,7 @@ echo "Done!"
 
 ### Built-in functions
 
-You can specify code for some hostnames using built-in bash function is_hostname(). Example with `~/.ssh/before_established.sh`:
+You can specify code for some hostnames using built-in bash function is_hostname(). Example with `~/.ssh/scripts/before_established.sh`:
 
 ```bash
 #!/bin/bash
