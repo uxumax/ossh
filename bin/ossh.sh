@@ -1,5 +1,8 @@
 #!/bin/bash
 
+BEFORE_ESTABLISHED_SCRIPT="/home/$USER/.ssh/before_established.sh"
+AFTER_ESTABLISHED_SCRIPT="/home/$USER/.ssh/after_established.sh"
+
 # First argument should be the Hostname
 if [[ -z "$1" ]]; then
   echo "Usage: $0 hostname [ssh_args...]"
@@ -56,8 +59,8 @@ if [[ -z "$(hostname_exists "$Hostname")" ]]; then
   exit 1
 fi
 
-~/.ssh/before_established.sh $Hostname
+$BEFORE_ESTABLISHED_SCRIPT "$Hostname"
 
 # Establish SSH connection with LocalCommand option that will be called afer ssh connection established
-ssh $Hostname -o PermitLocalCommand=yes -o LocalCommand="~/.ssh/after_established.sh $Hostname" "$@"
+ssh $Hostname -o PermitLocalCommand=yes -o LocalCommand="$AFTER_ESTABLISHED_SCRIPT $Hostname" "$@"
 
