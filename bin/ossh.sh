@@ -6,6 +6,14 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 
+# Function to check if hostname exists in ~/.ssh/config
+hostname_exists() {
+  local host=$1
+  awk -v host="$host" '
+    $1 == "Host" && $2 == host { print "exists"; exit }
+  ' ~/.ssh/config
+}
+
 # Function fetch ~/.ssh/config data by hostname (e.g., User, IdentityFile)
 get_ssh_option() {
   local host=$1
@@ -41,6 +49,12 @@ export -f is_hostname
 
 Hostname=$1
 shift
+
+# Check if Hostname exists in ~/.ssh/config
+if [[ -z "$(hostname_exists "$Hostname")" ]]; then
+  echo "Error: Hostname '$Hostname' not found in ~/.ssh/config"
+  exit 1
+fi
 
 ~/.ssh/before_established.sh $Hostname
 
