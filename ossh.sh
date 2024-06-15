@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BEFORE_ESTABLISHED_SCRIPT="/home/$USER/.ssh/before_established.sh"
-AFTER_ESTABLISHED_SCRIPT="/home/$USER/.ssh/after_established.sh"
+BEFORE_ESTABLISHED_SCRIPT="/home/$USER/.ssh/scripts/before_established.sh"
+AFTER_ESTABLISHED_SCRIPT="/home/$USER/.ssh/scripts/after_established.sh"
 
 # First argument should be the Hostname
 if [[ -z "$1" ]]; then
